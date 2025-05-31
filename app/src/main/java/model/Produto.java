@@ -9,11 +9,12 @@ public class Produto {
 
     private Double preco;
 
-    public Produto(Double preco, String descricao, String nome, String id) {
-        this.preco = preco;
-        this.descricao = descricao;
-        this.nome = nome;
+
+    public Produto(String id, String nome, String descricao, Double preco) {
         this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
     }
 
     public Double getPreco() {
