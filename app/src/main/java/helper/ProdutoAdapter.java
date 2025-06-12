@@ -8,11 +8,13 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ecommerce_gamer.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
+import java.util.Locale;
 
 import model.Produto;
 
@@ -35,7 +37,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_2, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(com.example.ecommerce_gamer.R.layout.produto_item, parent, false);
         return new ViewHolder(v);
     }
 
@@ -44,7 +46,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         Produto p = produtos.get(pos);
         holder.nome.setText(p.getNome());
         holder.descricao.setText("Descricao: " + p.getDescricao());
-        holder.preco.setText(String.format("R$" + p.getPreco()));
+        holder.preco.setText(String.format(Locale.US,"R$ %.2f", p.getPreco()));
 
 
         holder.itemView.setOnClickListener(v -> {
@@ -103,9 +105,9 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         TextView nome, descricao, preco;
         public ViewHolder(View itemView) {
             super(itemView);
-            nome = itemView.findViewById(android.R.id.nome);
-            descricao = itemView.findViewById(android.R.id.descricao);
-            preco = itemView.findViewById(android.R.preco);
+            nome = itemView.findViewById(R.id.text_nome);
+            descricao = itemView.findViewById(R.id.text_descricao);
+            preco = itemView.findViewById(R.id.text_preco);
         }
     }
 }

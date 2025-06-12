@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        db = FirebaseFirestore.getInstance();
+
         edtNome = findViewById(R.id.edtNome);
         edtDescricao = findViewById(R.id.edtDescricao);
         edtPreco = findViewById(R.id.edtPreco);
@@ -66,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
                 });
         adapter.setOnItemClickListener(produto -> {
             edtNome.setText(produto.getNome());
-            edtDescricao.setText(String.valueOf(produto.getDescricao()));
+            edtDescricao.setText(produto.getDescricao());
+            edtPreco.setText(String.valueOf(produto.getPreco()));
             produtoEditando = produto;
             ((Button) findViewById(R.id.btnCadastrar)).setText("Atualizar Produto");
         });
@@ -82,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     private void salvarProduto() {
         String nome = edtNome.getText().toString();
         String descricao = edtDescricao.getText().toString();
-        Double preco = Double.parseDouble(edtDescricao.getText().toString());
+        Double preco = Double.parseDouble(edtPreco.getText().toString());
         if (produtoEditando == null) {
             Produto produto = new Produto(null, nome, descricao, preco);
             db.collection("produtos")

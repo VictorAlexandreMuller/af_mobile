@@ -8,17 +8,17 @@
 
     <!-- Campos de entrada -->
     <EditText
-        android:id="@+id/edtNomeProduto"
+        android:id="@+id/edtNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nome do Produto"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/edtTipoModelo"
+        android:id="@+id/edtDescricao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tipo / Modelo"
+        android:hint="Descrição"
         android:inputType="text" />
 
     <EditText
@@ -38,15 +38,6 @@
         android:backgroundTint="@android:color/holo_blue_light" />
 
     <!-- Campo de busca -->
-    <EditText
-        android:id="@+id/edtBuscar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Buscar produto..."
-        android:inputType="text"
-        android:layout_marginTop="16dp"
-        android:drawableStart="@android:drawable/ic_menu_search"
-        android:paddingStart="12dp" />
 
     <!-- Listagem de produtos -->
     <androidx.recyclerview.widget.RecyclerView
