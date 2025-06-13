@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Campos de entrada -->
     <EditText
         android:id="@+id/edtNome"
         android:layout_width="match_parent"
@@ -28,7 +27,6 @@
         android:hint="Preço"
         android:inputType="numberDecimal" />
 
-    <!-- Botão de cadastro -->
     <Button
         android:id="@+id/btnCadastrar"
         android:layout_width="match_parent"
@@ -37,9 +35,6 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/holo_blue_light" />
 
-    <!-- Campo de busca -->
-
-    <!-- Listagem de produtos -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerProdutos"
         android:layout_width="match_parent"

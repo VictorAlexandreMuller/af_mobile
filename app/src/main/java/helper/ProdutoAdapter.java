@@ -48,36 +48,26 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
         holder.descricao.setText("Descricao: " + p.getDescricao());
         holder.preco.setText(String.format(Locale.US,"R$ %.2f", p.getPreco()));
 
-
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onItemClick(p);
             }
         });
 
-        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
-            private long lastClickTime = 0;
-
-            @Override
-            public boolean onTouch(View v, android.view.MotionEvent event) {
-                if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-                    long currentTime = System.currentTimeMillis();
-                    if (currentTime - lastClickTime < 300) {
-                        deletarProduto(p.getId(), holder.getAdapterPosition(), v);
-                    }
-                    lastClickTime = currentTime;
-                }
-                return false;
-            }
+        // Long press para deletar
+        holder.itemView.setOnLongClickListener(v -> {
+            deletarProduto(p.getId(), holder.getAdapterPosition(), v);
+            return true; // indica que o evento foi consumido
         });
     }
 
+
     private void deletarProduto(String idDocumento, int position, View view) {
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        if (user != null) {
-            String uid = user.getUid(); // se quiser usar
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//
+//        if (user != null) {
+//            String uid = user.getUid(); // se quiser usar
 
             FirebaseFirestore.getInstance().collection("produtos")
                     .document(idDocumento)
@@ -90,9 +80,9 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ViewHold
                     .addOnFailureListener(e -> {
                         Toast.makeText(view.getContext(), "Erro ao deletar", Toast.LENGTH_SHORT).show();
                     });
-        } else {
-            Toast.makeText(view.getContext(), "Você precisa estar logado para realizar essa ação", Toast.LENGTH_SHORT).show();
-        }
+//        } else {
+//            Toast.makeText(view.getContext(), "Você precisa estar logado para realizar essa ação", Toast.LENGTH_SHORT).show();
+//        }
     }
 
 
